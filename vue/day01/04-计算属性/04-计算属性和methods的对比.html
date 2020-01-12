@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-计算属性和methods的对比
+  </title>
+</head>
+<body>
+
+<!--计算属性会进行缓存，如果多次使用时，计算属性只会调用一次-->
+
+<div id="app">
+  <!--1.直接拼接: 语法过于繁琐-->
+  <h2>{{firstName}} {{lastName}}</h2>
+  <!--2.通过定义methods 无缓存-->
+  <h2>{{getFullName()}}</h2>
+<!--  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>-->
+
+  <!--3.通过计算属性Computed 有缓存-->
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  333saa
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName:'react',
+      lastName:'vue'
+    },
+    methods:{
+      getFullName() {
+        console.log('getFullName');
+        return this.firstName+' '+this.lastName;
+      }
+    },
+    computed:{
+      fullName:function () {
+        console.log('fullname');
+        return this.firstName+' '+this.lastName;
+      }
+    }
+
+  });
+</script>
+
+
+</body>
+</html>

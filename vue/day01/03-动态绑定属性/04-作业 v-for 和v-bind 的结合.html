@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-作业 v-for 和v-bind 的结合</title>
+
+  <style>
+    .active{
+      background-color: deepskyblue;
+    }
+  </style>
+
+
+</head>
+<body>
+
+
+<div id="app">
+
+  <ul>
+   <!-- <li v-for="item in books">{{item}}</li>-->
+    <li :class="{active:activeIndex==index}" v-on:click="changActive(index)" v-for="(item,index) in books">{{index}}-{{item}}</li>
+
+  </ul>
+
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue',
+      books:['红楼梦','水浒传','西游记','三国演义'],
+      activeClass:'active',
+      activeIndex:0
+    },
+    methods:{
+      changActive:function (index) {
+          this.activeIndex=index;
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

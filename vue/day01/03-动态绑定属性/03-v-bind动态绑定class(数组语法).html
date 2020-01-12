@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-v-bind动态绑定class(数组语法)</title>
+
+  <style>
+    .active{
+      color: deepskyblue;
+    }
+    .changSize{
+      font-size: 50px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+
+<div id="app">
+
+  <!--'activeClass' 中有引号''当做字符串解析，如果没有。把activeClass 当做变量-->
+  <h2 class="title" :class="['activeClass','changSizeClass']">{{message}}</h2>
+  <h2 class="title" :class="[activeClass,changSizeClass]">{{message}}</h2>
+  <h2 class="title" :class="getClasses()">{{message}}</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue',
+      activeClass:'active',
+      changSizeClass:'changSize'
+    },
+    methods:{
+      getClasses:function () {
+        return [this.activeClass,this.changSizeClass];
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

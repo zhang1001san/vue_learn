@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-计算属性的复杂操作</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2>书的总价格:{{totalPrice}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      books:[
+        {id:100,name:'java 从入门到放弃',price:100},
+        {id:101,name:'vue',price:50},
+        {id:102,name:'现代操作系统',price:150},
+        {id:103,name:'深入理解计算机原理',price:200}
+      ]
+    },
+    computed:{
+      totalPrice:function () {
+/*        let sum=0;
+        this.books.forEach(function (item) {
+          sum+=item.price;
+        })
+        return sum;*/
+
+       return  this.books.map(function (item) {
+          return item.price
+        }).reduce(function (pre,current) {
+            return pre+current;
+        },0);
+
+
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

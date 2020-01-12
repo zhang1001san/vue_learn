@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-块级作用域</title>
+</head>
+<body>
+
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+<script>
+
+  // ES5中的var是没有块级作用域的(if/for)_
+  // ES6中的let是由块级作用的(if/for)|
+
+      // ES5之 前因为if和for都没有块级作用域的概念，所以在很多时候，我们都必须借助于function的作用
+  // 域来解决应用外面变量的问题
+
+  // 1.变量作用域:变量在什么范围内是可用。
+
+  /*  {
+      var name='魔法师';
+      console.log(name);
+    }
+    console.log(name);*/
+
+
+  // 2.没有块级作用域引起的问题: if的块级
+  var func;
+  if (true) {
+    var mo = '哈哈';
+    func = function () {
+      console.log(mo);
+    }
+    func();
+  }
+  mo = '魔法师';
+  func();
+
+  // 3.没有块级作用域引起的问题: for的块级
+  // 为什么闭包可以解决问题:函数是一个作用域.
+  let btns = document.getElementsByTagName("button");
+  /*  for (var i=0;i<btns.length;i++){
+      btns[i].onclick=function () {
+        console.log(`第${i + 1}个按钮被点击`);
+      }
+    }  */
+
+  // 为什么闭包可以解决问题:函数是一个作用域.入参就在函数里面
+  /*  for (var i=0;i<btns.length;i++){
+      (function (num) {
+        btns[num].onclick=function () {
+          console.log(`第${num + 1}个按钮被点击`);
+        }
+      })(i);
+    }*/
+
+  // 也可以
+/*  for (var i = 0; i < btns.length; i++) {
+    btns[i].index=i;
+    btns[i].onclick = function () {
+      console.log(`第${ this.index+ 1}个按钮被点击`);
+    }
+  }*/
+
+
+  // es6
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].onclick = function () {
+      // console.log(`第${i + 1}个按钮被点击`);
+    }
+  }
+
+  // 相当于
+/*  {
+    i = 0
+    btns[i].onclick = function () {
+      console.log(`第${i + 1}个按钮被点击`);
+    }
+  }
+
+  {
+    i = 1
+    btns[i].onclick = function () {
+      console.log(`第${i + 1}个按钮被点击`);
+    }
+  }  {
+    i = 2
+    btns[i].onclick = function () {
+      console.log(`第${i + 1}个按钮被点击`);
+    }
+  }*/
+
+
+</script>
+
+
+</body>
+</html>

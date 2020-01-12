@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-v-pre指令的使用</title>
+</head>
+<body>
+
+<div id="app">
+
+  <h2>{{message}}</h2>
+  <!--v-pre用于跳过这个元素和它子元素的编译过程，用于显示原本的Mustache语法。-->
+  <h2 v-pre>{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    }
+  });
+</script>
+
+</body>
+</html>
