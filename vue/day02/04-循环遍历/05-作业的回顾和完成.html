@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-作业的回顾和完成</title>
+
+  <style type="text/css">
+    .active{
+      color: deepskyblue;
+    }
+  </style>
+
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li @click="changeSelectedIndex(index)" v-for="(item,index) in movies" :class="{active:index==selectedIndex}">{{item}}</li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      movies:['倚天屠龙记','侠客行','天龙八部','射雕英雄传'],
+      selectedIndex:0
+    },
+    methods:{
+      changeSelectedIndex(index){
+        this.selectedIndex=index;
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

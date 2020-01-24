@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-全家组件和局部组件</title>
+</head>
+<body>
+
+
+<div id="app">
+<!--  <my-cpn></my-cpn>-->
+  <cpn></cpn>
+</div>
+
+<h2>例外一个vue实例</h2>
+<div id="app2">
+<!--  <my-cpn></my-cpn>-->
+
+  <cpn></cpn>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // 1.创建组件构造器
+  const cpnContructor=Vue.extend({
+    template:`
+      <div>
+        <h2>念奴娇·赤壁怀古</h2>
+        <p>大江东去，浪淘尽，千古风流人物。</p>
+        <p>故垒西边，人道是，三国周郎赤壁。</p>
+        <p>乱石穿空，惊涛拍岸，卷起千堆雪。</p>
+        <p>江山如画，一时多少豪杰。</p>
+        <p>遥想公瑾当年，小乔初嫁了，雄姿英发。</p>
+        <p>羽扇纶巾，谈笑间，樯橹灰飞烟灭。</p>
+        <p>故国神游，多情应笑我，早生华发。</p>
+        <p>人生如梦，一尊还酹江月。</p>
+      </div>
+      `
+  });
+
+  const cpn2Contructor=Vue.extend({
+    template:`
+      <div>
+        <p>大江东去，浪淘尽，千古风流人物</p>
+      </div>
+    `
+  });
+
+  // 2.注册组件(全局组件，意味着可以在多个Vue的实例下面使用)
+  Vue.component("my-cpn",cpnContructor);
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    },
+    components:{
+      // 局部组件。当前vue实例可用cpn：标签名
+      cpn:cpn2Contructor
+    }
+  });
+
+  const app2=new Vue({
+    el:'#app2'
+  });
+</script>
+
+</body>
+</html>

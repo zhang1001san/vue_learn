@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-哪些数组的方法是响应式的</title>
+</head>
+<body>
+
+
+<div id="app">
+  <button @click="push">push（响应式）</button>
+
+  <button @click="pop">pop.删除数组最后一个元素(响应式)</button>
+  <button @click="shift">shift。删除数组第一个元素(响应式)</button>
+  <button @click="unshift">unshift。添加元素到数组第一个位置(响应式)</button>
+  </br>
+  </br>
+
+  <button @click="splice">splice添加/删除/修改数组(响应式)</button>
+  <button @click="sort">sort排序(响应式)</button>
+  <button @click="reverse">逆序(响应式)</button>
+
+
+  <br>
+  <br>
+  <button @click="modify">修改数组某个元素（非响应式）</button>
+  <button @click="modify2">修改数组某个元素.解决方法(响应式)</button>
+  <button @click="modify3">修改数组某个元素.解决方法Vue内部方法(响应式)</button>
+
+  </br>
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      letters: ['A','B','C','D','E']
+    },
+    methods:{
+      push(){
+        this.letters.push("F");
+      },
+      modify(){
+        this.letters[0]='aa';
+        console.log(this.letters);
+      },
+      modify2(){
+        this.letters.splice(0,1,'aa');
+      },
+      modify3(){
+        // set(要修改的对象，索引值，修改后的值)
+        Vue.set(this.letters,0,'vue');
+      },
+      pop(){
+        this.letters.pop();
+      },
+      shift(){
+        this.letters.shift();
+      },
+      unshift(){
+        this.letters.unshift("xx","bb");
+      },
+      splice(){
+        this.letters.splice(1,2,'n','m','o');
+      },
+      sort(){
+        // 逆序
+        this.letters.sort((o1,o2)=>{
+          return o2.charCodeAt()-o1.charCodeAt();
+        })
+      },
+      reverse(){
+        this.letters.reverse();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-v-on的参数问题</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>1.事件调用的方法没有参数</h2>
+  <button @click="btn1Click">按钮1</button>
+  <button @click="btn1Click()">按钮2</button> </br>
+
+  <h2>2.在事件定义时，写方法时省略了小括号，但是方法本身是需要一个参数的，这个时候，
+      Vue会默认将浏览器生产的event事件对象作为参数传入到方法
+  </h2>
+  <button @click="btn3Click(123)">按钮3</button>
+  <button @click="btn3Click()">按钮4</button>
+  <button @click="btn3Click">按钮5</button>
+
+  <h2>
+    3.方法定义时，我们需要event对象，同时又需要其他参数.
+    在调用方式，如何手动的获取到浏览器参数的event对象: $event
+  </h2>
+
+  <button @click="btn4Click(123,$event)">按钮6</button>
+  <button @click="btn4Click('abc',$event)">按钮7</button>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    },
+    methods:{
+      btn1Click(){
+        console.log("btn1Click");
+      },
+      btn3Click(event){
+        console.log(event);
+      },
+      btn4Click(parameter,event){
+        console.log("----------");
+        console.log(parameter);
+        console.log(event);
+      }
+
+    }
+  });
+</script>
+
+</body>
+</html>

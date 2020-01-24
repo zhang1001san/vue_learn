@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-v-for的使用</title>
+</head>
+<body>
+
+
+<div id="app">
+
+  <h2>1.不带索引</h2>
+  <ul>
+    <li v-for="item in books">{{item}}</li>
+  </ul>
+
+  <h2>2.带索引</h2>
+  <ul>
+    <li v-for="(item,index) in books">{{index+1}}--{{item}}</li>
+  </ul>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      books:['西游记','水浒传','三国演义','红楼梦']
+    }
+  });
+</script>
+
+</body>
+</html>

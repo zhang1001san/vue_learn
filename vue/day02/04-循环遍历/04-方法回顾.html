@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  // let arr=['张三','李四','王五'];
+/*  arr.forEach((item,index,self)=>{
+    console.log(item);
+    console.log(index);
+    console.log(self);
+  });*/
+
+  // 遍历key,即索引
+  // for (let key in arr){
+  //   console.log(key);
+  // }
+
+  // 遍历value
+  // for(let item of arr){
+  //   console.log(item);
+  // }
+
+
+  // 可变参数
+  // function sum(...num) {
+  //   num.forEach(item=>console.log(item));
+  // }
+  // sum(1,2,3,4);
+
+
+
+
+  // 数组的slice用法 改变数组本身
+  // splice作用: 删除元素/插入元素/替换元素
+  //删除元素:第二个参数传入你要删除几个元素(如果没有传，就删除后面所有的元素)
+  //替换元素:第二个参数，表示我们要替换几个元素，后面是用于替换前面的元素
+  //插入元素:第二个参数，传入0，并且后面跟上要插入的元素
+
+  let arr=['A','B','C','D','E','F'];
+  // 1.删除元素
+  //1.1 删除指定元素
+  //  arr.splice(1,2);// 从索引1开始删除2个元素
+
+  // 1.2删除从索引开始的所有元素
+  // arr.splice(1);
+
+  // 2.替换元素
+  // arr.splice(1,2,'m','n','o');
+
+  // 3.插入元素
+  arr.splice(1,0,'m','n','o');
+  console.log(arr);
+
+
+</script>
+
+</body>
+</html>

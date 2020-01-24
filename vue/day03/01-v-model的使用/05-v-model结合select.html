@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-v-model结合select</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2>1.只选一个</h2>
+  <select name="teleplay" v-model="teleplay">
+    <option value="倚天屠龙记">倚天屠龙记</option>
+    <option value="侠客行">侠客行</option>
+    <option value="天龙八部">天龙八部</option>
+    <option value="射雕英雄传">射雕英雄传</option>
+  </select>
+  <h2>选择的电视剧:{{teleplay}}</h2>
+
+  <h2>2.选多个</h2>
+  <select name="teleplaies" v-model="teleplaies" multiple>
+    <option value="倚天屠龙记">倚天屠龙记</option>
+    <option value="侠客行">侠客行</option>
+    <option value="天龙八部">天龙八部</option>
+    <option value="射雕英雄传">射雕英雄传</option>
+  </select>
+  <h2>选择的电视剧:{{teleplaies}}</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue',
+      teleplay:'侠客行',
+      teleplaies:[]
+    }
+  });
+</script>
+</body>
+</html>

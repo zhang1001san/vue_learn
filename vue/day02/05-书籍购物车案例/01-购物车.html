@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-购物车</title>
+</head>
+<body>
+
+<div id="app">
+
+  <table v-show="shoppingCart.length>0" width="60%" align="center">
+      <thead>
+        <tr>
+          <td></td>
+          <td>书籍名称</td>
+          <td>出版日期</td>
+          <td>价格</td>
+          <td>购买数量</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr v-for="(item,index) in shoppingCart">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.publishData}}</td>
+            <td>￥{{item.price}}</td>
+            <td><button @click="decrement(item,index)">-</button> {{item.quantity}} <button @click="increment(item)">+</button></td>
+            <td><button @click="removeItem(index)">移除</button></td>
+          </tr>
+          <tr>
+            <td><h2>总价格:{{totalPrice}}</h2></td>
+          </tr>
+      </tbody>
+  </table>
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+  const app=new Vue({
+    el:'#app',
+    data:{
+      shoppingCart:[
+          {id:1,name:'算法导论',publishData:'2020-1-1',price:100,quantity:1},
+          {id:2,name:'effective java',publishData:'2010-1-1',price:50,quantity:1},
+          {id:3,name:'kafka实战',publishData:'2018-1-1',price:80,quantity:1}
+      ]
+    },
+    methods:{
+      increment(item){
+        item.quantity++;
+      },
+      decrement(item,index){
+        if(item.quantity-1==0){
+          if(confirm("确认要删除吗?")){
+            // this.$options.methods.removeItem(index);
+            this.shoppingCart.splice(index,1);
+          }else{
+            return;
+          }
+        }else{
+          item.quantity--;
+        }
+      },
+      removeItem(index){
+        this.shoppingCart.splice(index,1);
+      }
+    },
+    computed:{
+      totalPrice(){
+       if(this.shoppingCart.length==0){
+         return 0;
+       }
+        return  this.shoppingCart.map(book=>book.price*book.quantity).reduce((prev,current)=>{
+          return prev+current;
+        })
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

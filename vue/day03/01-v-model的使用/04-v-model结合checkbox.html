@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-v-model结合checkbox</title>
+</head>
+<body>
+
+
+<div id="app">
+
+  <h2>1.单个多选框</h2>
+  <label for="agree">
+    <input type="checkbox" id="agree" v-model="isAgree">同意协议
+  </label>
+  <button :disabled="!isAgree">下一步</button>
+  <h2>是否同意协议:{{isAgree}}</h2>
+
+  <h2>2.多个多选框</h2>
+  <h2>喜欢的电视剧</h2>
+  <form>
+    <input type="checkbox" value="倚天屠龙记" v-model="teleplay">倚天屠龙记
+    <input type="checkbox" value="侠客行" v-model="teleplay">侠客行
+    <input type="checkbox" value="天龙八部" v-model="teleplay">天龙八部
+  </form>
+
+  <h2>选择的电视剧:{{teleplay}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      isAgree:false,
+      teleplay:[]
+    }
+  });
+</script>
+</body>
+</html>

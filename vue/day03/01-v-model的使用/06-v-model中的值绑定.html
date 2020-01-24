@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>06-v-model中的值绑定</title>
+</head>
+<body>
+
+
+<div id="app">
+
+  <label v-for="item in tvs" :for="item">
+    <input type="checkbox" v-model="selectedTvs" :id="item" :value="item">{{item}}
+  </label>
+  <h2>选择的电视剧:{{selectedTvs}}</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      tvs:['倚天屠龙记','天龙八部','射雕英雄传','神雕侠侣'],
+      selectedTvs:[]
+    }
+  });
+</script>
+
+</body>
+</html>

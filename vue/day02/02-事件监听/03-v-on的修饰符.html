@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03-v-on的修饰符</title>
+
+  <style>
+    .divClass{
+      background-color: deepskyblue;
+      width: 200px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <h2>1.stop修饰符的使用:阻止事件冒泡</h2>
+  <div @click="divClick" class="divClass">
+    哈哈华盛顿</br>
+    <button @click="btnClick">事件冒泡</button></br>
+    <button @click.stop="btnClick">@click.stop阻止事件冒泡</button></br>
+  </div>
+
+  <h2>2.prevent修饰符的使用。阻止默认行为</h2>
+  <form action="https://www.baidu.com">
+    <input type="submit" value="默认提交" @click="submitClick">
+    <input type="submit" value="@click.prevent阻止默认提交行为" @click.prevent="submitClick">
+  </form>
+
+  <h2>3.键盘事件</h2>
+  <input type="text" placeholder="监听所有按键"  v-on:keyup="keyupClick">
+  <input type="text" placeholder="监听enter键" @keyup.enter="enterClick">
+
+
+  <h2>4.once修饰符的使用:只能使用一次</h2>
+
+  <button @click.once="onceClick">只能点击一次</button>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    },
+    methods:{
+      btnClick(){
+        console.log("btnClick");
+      },
+      divClick(){
+        console.log("divClick");
+      },
+      submitClick(){
+        console.log("submitClick");
+      },
+      keyupClick(){
+        console.log("keyupClick:监听所有按键");
+      },
+      enterClick(){
+        console.log("监听enter按键");
+      },
+      onceClick(){
+        console.log("onceClick");
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

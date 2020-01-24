@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-v-if的使用</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2>1.v-if的使用</h2>
+  <h2 v-if="isShow">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue',
+      isShow:true
+    }
+  });
+</script>
+
+</body>
+</html>

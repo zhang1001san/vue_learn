@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-组件的语法糖注册方式</title>
+</head>
+<body>
+
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  // 1.创建组件构造器
+  // const cpn1=Vue.extend({
+  //   template:`
+  //     <div>
+  //       <h2>reat</h2>
+  //       <p>reat从入门到精通</p>
+  //     </div>
+  //   `
+  // });
+
+  // 2.注册全局组件
+  Vue.component("cpn1", {
+    template: `
+      <div>
+        <h2>reat</h2>
+        <p>reat从入门到精通</p>
+      </div>
+    `
+  })
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'vue'
+    },
+    components: {
+      // 注册局部组件语法糖
+      cpn2: {
+        template: `
+          <div>
+            <h2>vue</h2>
+            <p>vue从入门到放弃</p>
+          </div>
+        `
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>

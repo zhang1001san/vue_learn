@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-用户切换登陆的案例</title>
+</head>
+<body>
+
+<div id="app">
+
+  <span v-if="isUserLogin">
+    <label for="username">用户登陆</label>
+    <input placeholder="用户登陆" id="username">
+  </span>
+  <span v-else>
+    <label for="email">邮箱登陆</label>
+    <input placeholder="邮箱登陆" id="email">
+  </span>
+  <button @click="isUserLogin=!isUserLogin">切换登陆方式</button>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      // 是否是用户登陆模式
+      isUserLogin:true
+    }
+  });
+</script>
+
+
+</body>
+</html>

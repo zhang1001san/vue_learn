@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+
+  <h2>1.暴力遍历</h2>
+  <ul>
+    <li>{{info.name}}</li>
+    <li>{{info.age}}</li>
+    <li>{{info.height}}</li>
+  </ul>
+
+  <h2>2.遍历value.格式:value in info</h2>
+  <ul>
+    <li v-for="value in info">{{value}}</li>
+  </ul>
+
+  <h2>3.遍历key,value.格式:(value,key) in info</h2>
+  <ul>
+    <li v-for="(value,key) in info">{{key}}:{{value}}</li>
+  </ul>
+
+  <h2>4.遍历key,value.index格式:(value,key,index) in info</h2>
+
+  <ul>
+    <li v-for="(value,key,index) in info">{{key}}:{{value}}--{{index}}</li>
+  </ul>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      info:{
+        name:"魔法师",
+        age:18,
+        height:1.8
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>
