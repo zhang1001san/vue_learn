@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11-组件通信-父子组件通信案例</title>
+</head>
+<body>
+
+
+
+<div id="app">
+  <cpn :pnum1="num1" :pnum2="num2" @num1-input="num1Click" @num2-input="num2Click"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>父组件的值:{{pnum1}}</h2>
+    <h2>子组件的值:{{dnum1}}</h2>
+<!--    <input type="text" v-model="dnum1">-->
+    <input type="text" :value="dnum1" @input="num1Input">
+
+    <br>
+    <h2>父组件的值:{{pnum2}}</h2>
+    <h2>子组件的值:{{dnum2}}</h2>
+<!--    <input type="text" v-model="dnum2">-->
+    <input type="text" :value="dnum2" @input="num2Input">
+
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn={
+    template:'#cpn',
+    props:{
+      pnum1:Number,
+      pnum2:Number
+    },
+    data(){
+      console.log("data");
+      return{
+        dnum1:this.pnum1,
+        dnum2:this.pnum2
+      }
+    },
+    methods:{
+      num1Input(event){
+        this.dnum1=parseInt(event.target.value);
+        this.$emit("num1-input",this.dnum1);
+
+        // 修改num2
+        this.dnum2=this.dnum1*100;
+        this.$emit("num2-input",this.dnum2);
+      },
+      num2Input(event){
+        this.dnum2=parseInt(event.target.value);
+        this.$emit("num2-input",this.dnum2);
+
+        // 修改num1
+        this.dnum1=this.dnum2/100
+        this.$emit("num1-input",this.dnum1);
+      }
+    }
+  }
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      num1:1,
+      num2:0
+    },
+    components:{
+      cpn
+    },
+    methods: {
+      num1Click(num){
+        this.num1=num;
+      },
+      num2Click(num){
+        this.num2=num;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

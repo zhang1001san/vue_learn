@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01-slot-插槽的基本使用</title>
+</head>
+<body>
+
+
+<!--1.插槽的基本使用<slot></slot>
+2.插槽的默认值<slot>button</slot>
+3.如果有多个值，同时放入到组件进行替换时，一起作为替换元素-->
+
+
+<div id="app">
+  <cpn>
+    <button @click="btnClick">组件1按钮</button>
+  </cpn>
+  <cpn>
+    <i>组件2哈哈</i>
+    <h2>魔法师</h2>
+  </cpn>
+
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>组件</h2>
+    <h2>导航栏</h2>
+    <!--    <slot></slot>-->
+    <slot>
+      <button @click="slotClick">默认值</button>
+    </slot>
+
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    methods: {
+      // 方法写在组件里面
+      slotClick() {
+        console.log('slotClick');
+      }
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'vue'
+    },
+    methods: {
+      btnClick() {
+        console.log('btnClick');
+      }
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+
+</body>
+</html>

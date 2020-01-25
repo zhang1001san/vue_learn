@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>12-组件通信-父子组件通信(watch实现)</title>
+</head>
+<body>
+
+
+<div id="app">
+  <cpn :pnum1="num1" :pnum2="num2" @num1change="changeNum1" @num2change="changeNum2"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>父组件的内容:{{pnum1}}</h2>
+    <h2>子组件的内容:{{dnum1}}</h2>
+    <input type="text" v-model.number="dnum1">
+
+    <br>
+    <h2>父组件的内容:{{pnum2}}</h2>
+    <h2>子组件的内容:{{dnum2}}</h2>
+    <input type="text" v-model.number="dnum2">
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    props:{
+      pnum1: Number,
+      pnum2: Number
+    },
+    data() {
+      return {
+        dnum1:this.pnum1,
+        dnum2:this.pnum2
+      }
+    },
+    watch:{
+      dnum1(newValue){
+        console.log("dnum1:newValue", newValue);
+        this.dnum2=newValue*100;
+        this.$emit("num1change",newValue);
+      },
+      dnum2(newValue,oldValue){
+        console.log("dnum2 newValue:"+newValue+" oldValue:"+oldValue);
+        this.dnum1=newValue/100;
+        this.$emit("num2change",newValue);
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      changeNum1(value){
+        this.num1=value;
+      },
+      changeNum2(value){
+        this.num2=value;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-slot-具名插槽的使用</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>第一个组件</h2>
+  <cpn>
+    <span slot="center">center标题</span>
+    <button slot="left">返回</button>
+  </cpn>
+
+  <h2>第二个组件</h2>
+  <!--替换没有设置slot name的插槽-->
+  <cpn>哈哈</cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot name="left">左边</slot>
+    <slot name="center">中间</slot>
+    <slot>右边</slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn={
+    template:'#cpn'
+  };
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    },
+    components:{
+      cpn
+    }
+  });
+</script>
+
+</body>
+</html>
