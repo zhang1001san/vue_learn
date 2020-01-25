@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08-组件通信-父组件向子组件传递数据</title>
+</head>
+<body>
+
+<div id="app">
+
+  <h2>1.正常使用</h2>
+  <cpn v-bind:child-title="title" :child-tvs="tvs"></cpn>
+
+  <h2>2.默认值</h2>
+  <!--child-title使用默认值-->
+  <cpn  :child-tvs="tvs"></cpn>
+
+  <cpn v-bind:child-title="title"></cpn>
+
+  <h2>3.validator</h2>
+  <cpn v-bind:child-title="title" :cstatus="status" :child-tvs="tvs"></cpn>
+
+<!--  <h2>错误示例</h2>
+  <cpn child-title="title" child-tvs="tvs"></cpn>-->
+
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{childTitle}}</h2>
+    <ul>
+      <li v-for="item in childTvs">{{item}}</li>
+    </ul>
+    <h2>{{cstatus}}</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn={
+    template:'#cpn',
+    // 数组形式
+    // props:['child-title','child-tvs'],
+    props:{
+      // 类型限制
+      // 'child-title':String,
+      // 'child-tvs':Array
+      // 提供默认值和必传值
+      'child-title':{
+        type:String,
+        default:'喜欢的电影',
+        required:false
+      },
+      'child-tvs':{
+        type: Array,
+        // Invalid default value for prop "childTvs":
+        // Props with type Object/Array must use a factory function to return the default value.
+        // default: []
+        default(){
+          // 如果默认值为空数组这样写才行
+          return [];
+        }
+      },
+      cstatus:{
+        type:String,
+        // 校验
+        validator:function (value) {
+          return value.indexOf("success")!=-1
+        }
+      }
+    },
+    data(){
+      return{};
+    }
+  };
+
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue',
+      title:'电视剧',
+      status:'success',
+      tvs: ['倚天屠龙记','天龙八部','侠客行','连城诀']
+    },
+    components:{
+      cpn:cpn
+    }
+  });
+</script>
+
+</body>
+</html>

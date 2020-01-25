@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07-组件中的data为啥是函数</title>
+</head>
+<body>
+
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{counter}}</h2>
+    <button @click="decrement">-</button>
+    <button @click="increment">+</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const obj={
+    counter: 0
+  }
+
+  Vue.component('cpn',{
+    template:'#cpn',
+    data(){
+      // 组件共享变量了。不合适
+      // return obj;
+      return{
+        counter:0
+      }
+    },
+    methods:{
+      decrement(){
+        this.counter--;
+      },
+      increment(){
+        this.counter++;
+      }
+    }
+  });
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'vue'
+    }
+  });
+</script>
+
+</body>
+</html>
