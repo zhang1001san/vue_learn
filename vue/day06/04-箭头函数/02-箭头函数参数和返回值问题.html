@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-箭头函数参数和返回值问题</title>
+</head>
+<body>
+
+
+<script>
+
+  // 1.参数问题;
+  // 1.1.放入两个参数
+  const sum=(num1,num2)=>{
+    return num1+num2;
+  }
+
+  // 1.2一个参数可省了括号
+  const power=num=>{
+    return num*num;
+  }
+
+  // 2.函数中
+  // 2.1.函数代码块中有多行代码时
+  const test=()=>{
+    console.log('haha');
+    console.log('魔法师');
+  };
+
+  // 2.2.函数代码块中只有一行代码
+  const mul=(n1,n2)=>n1*n2;
+  console.log(mul(2, 3));
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03-箭头函数中this的指向问题</title>
+</head>
+<body>
+
+<script>
+
+  //问题:箭头函数中的this是如何查找的了?
+  //答案:向外层作用域中，一层层查找this,直到有this的定义.
+
+  // var name='window对象的name'
+  // const obj={
+  //   name:'obj对象的name',
+  //   aaa(){
+  //     setTimeout(function () {
+  //       console.log(this);// window对象
+  //       console.log(this.name);// window对象
+  //     },100);
+  //
+  //     console.log(this);
+  //
+  //     setTimeout(()=>{
+  //       console.log(this);// obj对象
+  //       console.log(this.name);// obj对象
+  //     },1000)
+  //   }
+  // }
+  // obj.aaa();
+
+
+  var name='window对象的name'
+  const obj={
+    name:'obj对象的name',
+    aaa(){
+      setTimeout(function () {
+        setTimeout(function () {
+          console.log(this);// window对象
+          console.log(this.name);// window对象
+        });
+
+        setTimeout(()=>{
+          console.log(this);// window对象
+          console.log(this.name);// window对象
+        });
+      });
+
+      console.log('center');
+      console.log(this);
+
+      setTimeout(()=>{
+        setTimeout(function () {
+          console.log(this);// window对象
+          console.log(this.name);// window对象
+        });
+        console.log('button');
+        console.log(this);
+        setTimeout(()=>{
+          console.log(this);// obj对象
+          console.log(this.name);// obj对象
+        });
+      })
+    }
+  };
+  obj.aaa();
+
+
+</script>
+
+</body>
+</html>
