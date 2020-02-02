@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05-promise的all方法的使用</title>
+</head>
+<body>
+
+<script>
+
+  // 依赖两个请求的结果
+  // 1.第一个方法
+  // let isSuccess1=false;
+  // let isSuccess2=false;
+  // // 1.第一个请求
+  // $.ajax({
+  //   url:'url1',
+  //   success:function (data) {
+  //     isSuccess1=true;
+  //     handleFunction(data);
+  //   }
+  // });
+  // // 2.第二个请求
+  // $.ajax({
+  //   url:'url1',
+  //   success:function (data) {
+  //     isSuccess2=true;
+  //     handleFunction(data);
+  //   }
+  // });
+  //
+  // function handleFunction(data) {
+  //   if (isSuccess1&&isSuccess2){
+  //     // 处理
+  //   }
+  // }
+
+  // 2.第二种方法
+  //   Promise.all([
+  //     new Promise((resolve, reject) => {
+  //       $.ajax({
+  //         url: 'url1',
+  //         success: function (data) {
+  //           resolve(data);
+  //         }
+  //       })
+  //       new Promise((resolve, reject) => {
+  //         $.ajax({
+  //           url: 'url1',
+  //           success: function (data) {
+  //             resolve(data);
+  //           }
+  //         })
+  // ]).then(result=>{
+  //   // result两个请求的结果
+  //     })
+
+  Promise.all([
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve('1111');
+        resolve({name:'张三',age:18});
+      })
+    }),
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({name:'李四',age:28});
+      })
+    })
+  ]).then(result => {
+    // result:数组，封装两个promise的结果
+    console.log(result);
+  });
+
+
+</script>
+
+
+</body>
+</html>

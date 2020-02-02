@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02-promise的另外一种处理方法</title>
+</head>
+<body>
+
+
+<script>
+
+  new Promise((resolve, reject) => {
+    setTimeout(()=>{
+      // 1.成功
+      // resolve('hello vuejs');
+
+      // 2.失败
+      reject('error message');
+    })
+  }).then(value => {
+    console.log(value);
+  },err=>{
+    console.log(err);
+  })
+
+</script>
+
+</body>
+</html>

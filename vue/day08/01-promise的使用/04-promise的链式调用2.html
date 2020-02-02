@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04-promise的链式调用2</title>
+</head>
+<body>
+
+
+<script>
+  // 1.
+  // new Promise((resolve, reject) => {
+  //   setTimeout(()=>{
+  //     resolve('aaa');
+  //   },1000)
+  // }).then(data=>{
+  //   console.log(data, '第一层的处理代码');
+  //   data=data+'1111';
+  //   return new Promise((resolve, reject) => {
+  //     reject('error message');
+  //   });
+  // }).then(data=>{
+  //   console.log(data, '第二层的处理代码');
+  //   data=data+'222';
+  //   return new Promise(resolve => {
+  //     resolve(data);
+  //   });
+  // }).then(data=>{
+  //   console.log(data, '第三层的处理代码');
+  // }).catch((err)=>{
+  //   console.log(err);
+  // });
+
+  // 2.
+  new Promise((resolve, reject) => {
+    setTimeout(()=>{
+      resolve('aaa');
+    },1000)
+  }).then(data=>{
+    console.log(data, '第一层的处理代码');
+    // data=data+'1111';
+    // return new Promise(resolve => {
+    //   resolve(data);
+    // });
+    // return Promise.resolve(data+"111");
+    // return Promise.reject('error message');
+    throw 'error exception';
+  }).then(data=>{
+    console.log(data, '第二层的处理代码');
+    return Promise.resolve(data+"222");
+
+  }).then(data=>{
+    console.log(data, '第三层的处理代码');
+  }).catch(err=>{
+    console.log(err);
+  });
+
+  //3.省略掉Promise. resolve
+  // new Promise((resolve, reject) => {
+  //   setTimeout(()=>{
+  //     resolve('aaa');
+  //   },1000)
+  // }).then(data=>{
+  //   console.log(data, '第一层的处理代码');
+  //   // return Promise.resolve(data+"111");
+  //   return data+'111';
+  // }).then(data=>{
+  //   console.log(data, '第二层的处理代码');
+  //   return data+'222';
+  // }).then(data=>{
+  //   console.log(data, '第三层的处理代码');
+  // });
+
+
+</script>
+
+
+</body>
+</html>
